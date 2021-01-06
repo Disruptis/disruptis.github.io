@@ -104,24 +104,20 @@ img {
     filter: blur(44px);
 }
 
-    .spoiler--hidden .spoiler-image:after {
-        content: "SPOILER";
-        color: #dcddde;
-        background-color: rgba(0, 0, 0, 0.6);
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        font-weight: 600;
-        /* padding: 0.5em 0.7em; */
-        padding: 100%;
-        /* This ruins those beutifully rounded buttons, but it's needed to prevent a FireFox bug with video and audio elemnts. */
-        /* The bug is that you can click trough the spoiler layer and play the video or audio, I could not identify the cause. */
-        /* I leave this here, in case someone is brave enough to venture in to madness that is undocumented browser behaviour. */
-        border-radius: 20px;
-        letter-spacing: 0.05em;
-        font-size: 0.9em;
-    }
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 100%;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
 
 .spoiler--hidden:hover .spoiler-image:after {
     color: #fff;
@@ -222,6 +218,58 @@ img {
     grid-template-columns: auto 1fr;
 }
 
+.chatlog__reference-symbol {
+    grid-column: 1;
+    border-style: solid;
+    border-width: 2px 0 0 2px;
+    border-radius: 8px 0 0 0;
+    margin-left: 16px;
+    margin-top: 8px;
+}
+
+.chatlog__reference {
+    display: flex;
+    grid-column: 2;
+    margin-left: 1.2em;
+    margin-bottom: 0.25em;
+    font-size: 0.875em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+}
+
+.chatlog__reference-avatar {
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    margin-right: 0.25em;
+}
+
+.chatlog__reference-name {
+    margin-right: 0.25em;
+    font-weight: 600;
+}
+
+.chatlog__reference-link {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chatlog__reference-link:hover {
+    text-decoration: none;
+}
+
+.chatlog__reference-content > * {
+    display: inline;
+}
+
+.chatlog__reference-edited-timestamp {
+    margin-left: 0.25em;
+    font-size: 0.8em;
+}
+
 .chatlog__author-avatar-container {
     grid-column: 1;
     width: 40px;
@@ -275,6 +323,53 @@ img {
     max-width: 45vw;
     max-height: 500px;
     border-radius: 3px;
+}
+
+.chatlog__attachment-container {
+    height: 40px;
+    width: 100%;
+    max-width: 520px;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.chatlog__attachment-icon {
+    float: left;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.chatlog__attachment-icon > .a {
+    fill: #f4f5fb;
+    d: path("M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z");
+}
+
+.chatlog__attachment-icon > .b {
+    fill: #7789c4;
+    d: path("M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z");
+}
+
+.chatlog__attachment-icon > .c {
+    fill: #f4f5fb;
+    d: path("M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z");
+}
+
+.chatlog__attachment-icon > .d {
+    fill: #7789c4;
+    d: path("M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z");
+}
+
+.chatlog__attachment-filesize {
+    color: #72767d;
+    font-size: 12px;
+}
+
+.chatlog__attachment-filename {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .chatlog__embed {
@@ -489,6 +584,26 @@ a {
     border-color: rgba(255, 255, 255, 0.1);
 }
 
+.chatlog__reference-symbol {
+    border-color: #4f545c;
+}
+
+.chatlog__reference {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link:hover {
+    color: #ffffff;
+}
+
+.chatlog__reference-edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
 .chatlog__author-name {
     color: #ffffff;
 }
@@ -503,6 +618,11 @@ a {
 
 .chatlog__message--pinned {
     background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__attachment-container {
+    background-color: #2f3136;
+    border-color: #292b2f;
 }
 
 .chatlog__edited-timestamp {
@@ -605,7 +725,7 @@ a {
 
 <div class="preamble">
     <div class="preamble__guild-icon-container">
-        <img class="preamble__guild-icon" src="saga-of-the-strider.html_Files/fc98d03e2959db67fbf41a51f8e7c2ed-EA16C.png" alt="Guild icon">
+        <img class="preamble__guild-icon" src="saga-of-the-strider.html_Files/649cb72291824b4f3e2f2c85f87ec8f1-FA4ED.png" alt="Guild icon">
     </div>
     <div class="preamble__entries-container">
         <div class="preamble__entry">Tales of the Awakened [Warframe RP Community]</div>
@@ -803,7 +923,7 @@ Because it was Right... He told himself, as he rest his knees on the platform, a
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/3a8506ac23342fc45d9e2106012f2a42-1D5CD.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/7baab216279cf97c0777cf2ac247137e-32B1E.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
         <span class="chatlog__author-name" title="Ross#8154" data-user-id="227906898219892736" style="">Ross</span>
@@ -832,7 +952,7 @@ It dropped quickly towards the ground, pulling up at the last minute to level ou
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/3a8506ac23342fc45d9e2106012f2a42-1D5CD.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/7baab216279cf97c0777cf2ac247137e-32B1E.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
         <span class="chatlog__author-name" title="Ross#8154" data-user-id="227906898219892736" style="">Ross</span>
@@ -941,7 +1061,7 @@ Still maintaining his salute, he turned to briefly acknowledge the other Tenno b
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/3a8506ac23342fc45d9e2106012f2a42-1D5CD.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/7baab216279cf97c0777cf2ac247137e-32B1E.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
         <span class="chatlog__author-name" title="Ross#8154" data-user-id="227906898219892736" style="">Ross</span>
@@ -970,10 +1090,10 @@ Leveret turned to face the Nox as he approached, immediately taking in all notew
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/6d601a7ff3217a8d46f30ae798321bd4-777DC.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/712ddc6cb4235d7e94d3536bdad2d0dc-CFC6B.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
-        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="color: rgb(0,5,46)">Daakjenaar - Kamos &amp; Atela</span>
+        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="">Daakjenaar</span>
 
 
         <span class="chatlog__timestamp">09-Aug-18 04:16 AM</span>
@@ -1094,7 +1214,7 @@ The Nox disappeared inside, presumably to set up the seats for the others.</span
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/3a8506ac23342fc45d9e2106012f2a42-1D5CD.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/7baab216279cf97c0777cf2ac247137e-32B1E.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
         <span class="chatlog__author-name" title="Ross#8154" data-user-id="227906898219892736" style="">Ross</span>
@@ -1123,10 +1243,10 @@ Leveret found that navigating the waterlogged ground of Ceres was a different ex
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/6d601a7ff3217a8d46f30ae798321bd4-777DC.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/712ddc6cb4235d7e94d3536bdad2d0dc-CFC6B.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
-        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="color: rgb(0,5,46)">Daakjenaar - Kamos &amp; Atela</span>
+        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="">Daakjenaar</span>
 
 
         <span class="chatlog__timestamp">10-Aug-18 07:39 PM</span>
@@ -1271,7 +1391,7 @@ There was a vehemence in his sunny gaze, as if he could burn a hole through the 
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/3a8506ac23342fc45d9e2106012f2a42-1D5CD.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/7baab216279cf97c0777cf2ac247137e-32B1E.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
         <span class="chatlog__author-name" title="Ross#8154" data-user-id="227906898219892736" style="">Ross</span>
@@ -1329,10 +1449,10 @@ He saluted Lekalis once more, then the two other Tenno before sitting back down 
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/6d601a7ff3217a8d46f30ae798321bd4-777DC.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/712ddc6cb4235d7e94d3536bdad2d0dc-CFC6B.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
-        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="color: rgb(0,5,46)">Daakjenaar - Kamos &amp; Atela</span>
+        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="">Daakjenaar</span>
 
 
         <span class="chatlog__timestamp">13-Aug-18 08:43 PM</span>
@@ -1442,7 +1562,7 @@ Vok Vok saluted yet again as he stood up and spoke before clearing his mucus-cha
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/3a8506ac23342fc45d9e2106012f2a42-1D5CD.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/7baab216279cf97c0777cf2ac247137e-32B1E.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
         <span class="chatlog__author-name" title="Ross#8154" data-user-id="227906898219892736" style="">Ross</span>
@@ -1470,10 +1590,10 @@ He glanced outside as a distant flash of lightning found its way to a lightning 
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/6d601a7ff3217a8d46f30ae798321bd4-777DC.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/712ddc6cb4235d7e94d3536bdad2d0dc-CFC6B.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
-        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="color: rgb(0,5,46)">Daakjenaar - Kamos &amp; Atela</span>
+        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="">Daakjenaar</span>
 
 
         <span class="chatlog__timestamp">15-Aug-18 11:40 AM</span>
@@ -1510,7 +1630,7 @@ He glanced outside as a distant flash of lightning found its way to a lightning 
             <div class="chatlog__message " data-message-id="482705272889016320" id="message-482705272889016320">
                     <div class="chatlog__content">
                         <div class="markdown">
-                            <span class="preserve-whitespace"><span class="mention" title="Daakjenaar#4717">@Daakjenaar - Kamos &amp; Atela</span> <span class="mention" title="Ross#8154">@Ross</span> <span class="mention" title="jado the man#0685">@Almighty_Jado - Kapak</span> 
+                            <span class="preserve-whitespace"><span class="mention" title="Daakjenaar#4717">@Daakjenaar</span> <span class="mention" title="Ross#8154">@Ross</span> <span class="mention" title="jado the man#0685">@Almighty_Jado - Kapak</span> 
 /Lekalis/
 
 The Strider stared at Vok-vok... Just <em>who</em> had he consigned for his Op?
@@ -1566,7 +1686,7 @@ He cleared his throat, flourishing his hand and posturing a bit more respectfull
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/3a8506ac23342fc45d9e2106012f2a42-1D5CD.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/7baab216279cf97c0777cf2ac247137e-32B1E.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
         <span class="chatlog__author-name" title="Ross#8154" data-user-id="227906898219892736" style="">Ross</span>
@@ -1621,10 +1741,10 @@ He folded his scraped arms across his chest and nodded slowly, obviously having 
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/6d601a7ff3217a8d46f30ae798321bd4-777DC.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/712ddc6cb4235d7e94d3536bdad2d0dc-CFC6B.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
-        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="color: rgb(0,5,46)">Daakjenaar - Kamos &amp; Atela</span>
+        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="">Daakjenaar</span>
 
 
         <span class="chatlog__timestamp">26-Aug-18 12:04 AM</span>
@@ -1732,7 +1852,7 @@ He then promptly stood up, saluted Lekalis yet again, and then marched out towar
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/3a8506ac23342fc45d9e2106012f2a42-1D5CD.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/7baab216279cf97c0777cf2ac247137e-32B1E.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
         <span class="chatlog__author-name" title="Ross#8154" data-user-id="227906898219892736" style="">Ross</span>
@@ -1767,10 +1887,10 @@ Leveret turned and waited for the rest of the group to follow, moving slowly bac
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/6d601a7ff3217a8d46f30ae798321bd4-777DC.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/712ddc6cb4235d7e94d3536bdad2d0dc-CFC6B.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
-        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="color: rgb(0,5,46)">Daakjenaar - Kamos &amp; Atela</span>
+        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="">Daakjenaar</span>
 
 
         <span class="chatlog__timestamp">28-Aug-18 01:33 PM</span>
@@ -1939,7 +2059,7 @@ The Nox stood at attention behind Lekalis, swaying slightly, as he was definitel
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/3a8506ac23342fc45d9e2106012f2a42-1D5CD.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/7baab216279cf97c0777cf2ac247137e-32B1E.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
         <span class="chatlog__author-name" title="Ross#8154" data-user-id="227906898219892736" style="">Ross</span>
@@ -1967,10 +2087,10 @@ Seemingly used to cramped, cobbled-together spaces, Leveret found a relatively d
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/6d601a7ff3217a8d46f30ae798321bd4-777DC.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/712ddc6cb4235d7e94d3536bdad2d0dc-CFC6B.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
-        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="color: rgb(0,5,46)">Daakjenaar - Kamos &amp; Atela</span>
+        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="">Daakjenaar</span>
 
 
         <span class="chatlog__timestamp">01-Sep-18 04:54 PM</span>
@@ -2026,7 +2146,7 @@ He asked innocently, almost distantly, as his vox clicked in satisfaction, as th
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/3a8506ac23342fc45d9e2106012f2a42-1D5CD.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/7baab216279cf97c0777cf2ac247137e-32B1E.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
         <span class="chatlog__author-name" title="Ross#8154" data-user-id="227906898219892736" style="">Ross</span>
@@ -2117,10 +2237,10 @@ He made a few bold, scratchy twangs on the metal chords; it sounded more like ru
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/6d601a7ff3217a8d46f30ae798321bd4-777DC.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/712ddc6cb4235d7e94d3536bdad2d0dc-CFC6B.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
-        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="color: rgb(0,5,46)">Daakjenaar - Kamos &amp; Atela</span>
+        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="">Daakjenaar</span>
 
 
         <span class="chatlog__timestamp">05-Sep-18 11:54 PM</span>
@@ -2143,7 +2263,7 @@ He made a few bold, scratchy twangs on the metal chords; it sounded more like ru
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/3a8506ac23342fc45d9e2106012f2a42-1D5CD.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/7baab216279cf97c0777cf2ac247137e-32B1E.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
         <span class="chatlog__author-name" title="Ross#8154" data-user-id="227906898219892736" style="">Ross</span>
@@ -2533,7 +2653,7 @@ The sender&#39;s ID is jarbled, but given time, could be identified. The message
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/c5101e6517cc87a0d13a3d976b51b994-387C0.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/510043f71a932223ab64f94d9cf45170-F7E8A.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
         <span class="chatlog__author-name" title="Midnight Ξ Runner#9606" data-user-id="208668282646036482" style="color: rgb(0,24,255)">Midnight-Runner - Ella</span>
@@ -2571,7 +2691,7 @@ Going against better judgement, he slid down the ridge he was on, transferring t
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/3a8506ac23342fc45d9e2106012f2a42-1D5CD.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/7baab216279cf97c0777cf2ac247137e-32B1E.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
         <span class="chatlog__author-name" title="Ross#8154" data-user-id="227906898219892736" style="">Ross</span>
@@ -2634,10 +2754,10 @@ As he approaches, Roskov would be able to see an individual wearing a grey cloak
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/6d601a7ff3217a8d46f30ae798321bd4-777DC.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/712ddc6cb4235d7e94d3536bdad2d0dc-CFC6B.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
-        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="color: rgb(0,5,46)">Daakjenaar - Kamos &amp; Atela</span>
+        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="">Daakjenaar</span>
 
 
         <span class="chatlog__timestamp">11-Sep-18 10:48 PM</span>
@@ -2752,7 +2872,7 @@ Roskov was quiet, and clutched his tablet tightly in his grip. The Defensive Tea
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/c5101e6517cc87a0d13a3d976b51b994-387C0.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/510043f71a932223ab64f94d9cf45170-F7E8A.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
         <span class="chatlog__author-name" title="Midnight Ξ Runner#9606" data-user-id="208668282646036482" style="color: rgb(0,24,255)">Midnight-Runner - Ella</span>
@@ -2784,7 +2904,7 @@ The radiation waving over affected his systems just the same as the Perrin&#39;s
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/3a8506ac23342fc45d9e2106012f2a42-1D5CD.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/7baab216279cf97c0777cf2ac247137e-32B1E.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
         <span class="chatlog__author-name" title="Ross#8154" data-user-id="227906898219892736" style="">Ross</span>
@@ -2817,10 +2937,10 @@ As soon as Leveret exited his lander and glanced around, he noticed the multicol
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/6d601a7ff3217a8d46f30ae798321bd4-777DC.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/712ddc6cb4235d7e94d3536bdad2d0dc-CFC6B.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
-        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="color: rgb(0,5,46)">Daakjenaar - Kamos &amp; Atela</span>
+        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="">Daakjenaar</span>
 
 
         <span class="chatlog__timestamp">08-Apr-19 09:09 PM</span>
@@ -3019,7 +3139,7 @@ Arrows represent previous player&#39;s actions, aside for Roskov which represent
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/3a8506ac23342fc45d9e2106012f2a42-1D5CD.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/7baab216279cf97c0777cf2ac247137e-32B1E.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
         <span class="chatlog__author-name" title="Ross#8154" data-user-id="227906898219892736" style="">Ross</span>
@@ -3051,10 +3171,10 @@ Leveret folded his arms grimly and watched as they stumbled towards safety. A ti
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/6d601a7ff3217a8d46f30ae798321bd4-777DC.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/712ddc6cb4235d7e94d3536bdad2d0dc-CFC6B.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
-        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="color: rgb(0,5,46)">Daakjenaar - Kamos &amp; Atela</span>
+        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="">Daakjenaar</span>
 
 
         <span class="chatlog__timestamp">09-May-19 03:19 PM</span>
@@ -3079,7 +3199,7 @@ Once the whole thing had passed for her, Atela immediately crouched down and put
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/3a8506ac23342fc45d9e2106012f2a42-1D5CD.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/7baab216279cf97c0777cf2ac247137e-32B1E.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
         <span class="chatlog__author-name" title="Ross#8154" data-user-id="227906898219892736" style="">Ross</span>
@@ -3107,7 +3227,7 @@ Whatever Leveret had that resembled guts all twisted in sympathy as Kamos hunche
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/c5101e6517cc87a0d13a3d976b51b994-387C0.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/510043f71a932223ab64f94d9cf45170-F7E8A.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
         <span class="chatlog__author-name" title="Midnight Ξ Runner#9606" data-user-id="208668282646036482" style="color: rgb(0,24,255)">Midnight-Runner - Ella</span>
@@ -3325,10 +3445,10 @@ When the petrifying ghasts finally relented, and the order rang still in his ear
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/6d601a7ff3217a8d46f30ae798321bd4-777DC.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/712ddc6cb4235d7e94d3536bdad2d0dc-CFC6B.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
-        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="color: rgb(0,5,46)">Daakjenaar - Kamos &amp; Atela</span>
+        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="">Daakjenaar</span>
 
 
         <span class="chatlog__timestamp">14-Jun-19 09:38 PM</span>
@@ -3356,7 +3476,7 @@ Atela listened to the noises, the screams... but wasn&#39;t getting anything spe
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/3a8506ac23342fc45d9e2106012f2a42-1D5CD.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/7baab216279cf97c0777cf2ac247137e-32B1E.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
         <span class="chatlog__author-name" title="Ross#8154" data-user-id="227906898219892736" style="">Ross</span>
@@ -3427,7 +3547,7 @@ Without waiting for his ally to get back into the warframe, he scurried off into
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/c5101e6517cc87a0d13a3d976b51b994-387C0.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/510043f71a932223ab64f94d9cf45170-F7E8A.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
         <span class="chatlog__author-name" title="Midnight Ξ Runner#9606" data-user-id="208668282646036482" style="color: rgb(0,24,255)">Midnight-Runner - Ella</span>
@@ -3555,10 +3675,10 @@ It did not search for long, as it stared singularly at the Three Tenno... Kamos,
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/6d601a7ff3217a8d46f30ae798321bd4-777DC.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/712ddc6cb4235d7e94d3536bdad2d0dc-CFC6B.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
-        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="color: rgb(0,5,46)">Daakjenaar - Kamos &amp; Atela</span>
+        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="">Daakjenaar</span>
 
 
         <span class="chatlog__timestamp">11-Jul-19 12:08 AM</span>
@@ -3585,7 +3705,7 @@ When that lightning struck, when they saw the old settlement... Now, Atela had n
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/3a8506ac23342fc45d9e2106012f2a42-1D5CD.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/7baab216279cf97c0777cf2ac247137e-32B1E.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
         <span class="chatlog__author-name" title="Ross#8154" data-user-id="227906898219892736" style="">Ross</span>
@@ -3617,7 +3737,7 @@ Leveret was far too distracted with the ghostly attacker to notice the Loki&#39;
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/c5101e6517cc87a0d13a3d976b51b994-387C0.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/510043f71a932223ab64f94d9cf45170-F7E8A.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
         <span class="chatlog__author-name" title="Midnight Ξ Runner#9606" data-user-id="208668282646036482" style="color: rgb(0,24,255)">Midnight-Runner - Ella</span>
@@ -3828,7 +3948,7 @@ Hidden behind several crates, a light flickered to life every odd second or two,
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/3a8506ac23342fc45d9e2106012f2a42-1D5CD.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/7baab216279cf97c0777cf2ac247137e-32B1E.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
         <span class="chatlog__author-name" title="Ross#8154" data-user-id="227906898219892736" style="">Ross</span>
@@ -3896,10 +4016,10 @@ Still holding onto the pommel of his hammer for support, he looked towards the c
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/6d601a7ff3217a8d46f30ae798321bd4-777DC.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/712ddc6cb4235d7e94d3536bdad2d0dc-CFC6B.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
-        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="color: rgb(0,5,46)">Daakjenaar - Kamos &amp; Atela</span>
+        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="">Daakjenaar</span>
 
 
         <span class="chatlog__timestamp">17-Jul-19 08:15 PM</span>
@@ -3986,7 +4106,7 @@ Kapak was oblivious to the Corpus operation here, meaning that when he set his s
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/c5101e6517cc87a0d13a3d976b51b994-387C0.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/510043f71a932223ab64f94d9cf45170-F7E8A.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
         <span class="chatlog__author-name" title="Midnight Ξ Runner#9606" data-user-id="208668282646036482" style="color: rgb(0,24,255)">Midnight-Runner - Ella</span>
@@ -4162,10 +4282,10 @@ The question of Fight or Flight was clearly painted in the boys mercurial eyes..
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/6d601a7ff3217a8d46f30ae798321bd4-777DC.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/712ddc6cb4235d7e94d3536bdad2d0dc-CFC6B.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
-        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="color: rgb(0,5,46)">Daakjenaar - Kamos &amp; Atela</span>
+        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="">Daakjenaar</span>
 
 
         <span class="chatlog__timestamp">10-Nov-19 06:09 PM</span>
@@ -4439,10 +4559,10 @@ If he could close the gap, he could extend his renewing energy to replenish thei
 
 <div class="chatlog__message-group">
     <div class="chatlog__author-avatar-container">
-        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/6d601a7ff3217a8d46f30ae798321bd4-777DC.png" alt="Avatar">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/712ddc6cb4235d7e94d3536bdad2d0dc-CFC6B.png" alt="Avatar">
     </div>
     <div class="chatlog__messages">
-        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="color: rgb(0,5,46)">Daakjenaar - Kamos &amp; Atela</span>
+        <span class="chatlog__author-name" title="Daakjenaar#4717" data-user-id="358680374022242324" style="">Daakjenaar</span>
 
 
         <span class="chatlog__timestamp">12-Apr-20 03:15 PM</span>
@@ -4493,11 +4613,65 @@ That might have been the closest thing to good luck Atela&#39;s had so far today
     </div>
 </div>
 
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="saga-of-the-strider.html_Files/d73030fb7f7872bb9df7d8d905bbb49e-811B6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blood&#127862;Strider#5557" data-user-id="235950544630317057" style="color: rgb(255,41,0)">Blood_Strider - Lekalis</span>
+
+
+        <span class="chatlog__timestamp">06-Jan-21 02:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="796282077858496542" id="message-796282077858496542">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">In times archaic, it was once thought that Life flowed through the blood.
+That rich sanguine substance that shone vermillion in deepest darks and brightest lights; whose coppery stain and metallic taste could never be misplaced.
+    Those times are gone to dust and ash, the measure of life in the System has been schism’d by violence and undeath. The measure has gone beyond the blood, beyond flesh and bone…
+
+    … Yet blood, flesh, skin, bone all remain in this vexxed pool of slaughter we call our Sol.
+
+    Here, on Ceres, these designs all coalesced into one break on the thin astringent holding back the Void. 
+Unbound, undone, unfitting; this singular droplet had stirred a maelstrom of energy on the planet and gone unnoticed for its nature. For the mayhem of the perfect pattern seemed undisturbed by such egregious violence; such was the way of Sol.
+    That is, until a small copse of Tenno thought to investigate, to fix an irregularity in a system they thought to be saving. 
+    Thus, was the true design of this charybdis of Void made manifest; like a kite on a wayward wind it made its shape known upon the sky,  where the anomalous tear in reality bled so literally like a wound in some great primordial being. Rains of pure chaos and wind both screaming and still fell upon the Tenno to show them what they had lost… what they would lose; in time, to time.
+
+    Leveret, Kamos and Atela, Kapak and Vuko; a handful of names lost to a time before would be among the few to have found themselves survivors of this path of mayhem. Where reality raged at the violence, the slaughter; at the measure of life by the death wrung out of it.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="796282106224705567" id="message-796282106224705567">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Those fateful few would recollect scattered memories of their time within the maelstrom, beneath a bloody lune that hung low in a storming sky. They would recollect the visage of The Strider, the Instrument of Mayhem there; caught in its crimson currents, yet conducting them still with trident in hand, as some Mycanaen deity once had. There by choice or by capture, it was impossible to tell as there was no sorrow in his composure. 
+    Though these memories would find themselves amongst so many others, what memories they may recount belied a desolation of mind. Time moved sluggish yet erratic…
+
+    … Blood will clot, in time; so too did this storm.
+The Strider the Few had seen, still lost to the Void.
+
+[CLOSING PROSE]</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
 </div>
 
 <div class="postamble">
-    <div class="postamble__entry">Exported 140 message(s)</div>
+    <div class="postamble__entry">Exported 142 message(s)</div>
 </div>
 
 </body>
+
 </html>
